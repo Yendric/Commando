@@ -252,17 +252,17 @@ class Command {
 		if(ownerOverride && this.client.isOwner(message.author)) return true;
 
 		if(this.ownerOnly && (ownerOverride || !this.client.isOwner(message.author))) {
-			return `The \`${this.name}\` command can only be used by the bot owner.`;
+			return `Het \`${this.name}\` commando kan enkel door de bot-owner worden gebruikt.`;
 		}
 
 		if(message.channel.type === 'text' && this.userPermissions) {
 			const missing = message.channel.permissionsFor(message.author).missing(this.userPermissions);
 			if(missing.length > 0) {
 				if(missing.length === 1) {
-					return `The \`${this.name}\` command requires you to have the "${permissions[missing[0]]}" permission.`;
+					return `Het \`${this.name}\` commando vereist de "${permissions[missing[0]]}" permissie.`;
 				}
 				return oneLine`
-					The \`${this.name}\` command requires you to have the following permissions:
+					Het \`${this.name}\` commando vereist de volgende permissies:
 					${missing.map(perm => permissions[perm]).join(', ')}
 				`;
 			}
@@ -304,27 +304,27 @@ class Command {
 	onBlock(message, reason, data) {
 		switch(reason) {
 			case 'guildOnly':
-				return message.reply(`The \`${this.name}\` command must be used in a server channel.`);
+				return message.reply(`Het \`${this.name}\` commando moet in een server gebruikt worden.`);
 			case 'nsfw':
-				return message.reply(`The \`${this.name}\` command can only be used in NSFW channels.`);
+				return message.reply(`Het \`${this.name}\` commando moet in een NSFW channel gebruikt worden.`);
 			case 'permission': {
 				if(data.response) return message.reply(data.response);
-				return message.reply(`You do not have permission to use the \`${this.name}\` command.`);
+				return message.reply(`U heeft geen toestemming voor het \`${this.name}\` commando.`);
 			}
 			case 'clientPermissions': {
 				if(data.missing.length === 1) {
 					return message.reply(
-						`I need the "${permissions[data.missing[0]]}" permission for the \`${this.name}\` command to work.`
+						`Ik heb de "${permissions[data.missing[0]]}" permissie nodig.`
 					);
 				}
 				return message.reply(oneLine`
-					I need the following permissions for the \`${this.name}\` command to work:
+					Ik heb de volgende permissies nodig:
 					${data.missing.map(perm => permissions[perm]).join(', ')}
 				`);
 			}
 			case 'throttling': {
 				return message.reply(
-					`You may not use the \`${this.name}\` command again for another ${data.remaining.toFixed(1)} seconds.`
+					`Je kan het \`${this.name}\` niet gebruiken voor: ${data.remaining.toFixed(1)} seconden.`
 				);
 			}
 			default:
@@ -351,9 +351,7 @@ class Command {
 
 		const invite = this.client.options.invite;
 		return message.reply(stripIndents`
-			An error occurred while running the command: \`${err.name}: ${err.message}\`
-			You shouldn't ever receive an error like this.
-			Please contact ${ownerList || 'the bot owner'}${invite ? ` in this server: ${invite}` : '.'}
+			Er is een fout opgetreden bij het uitvoeren van dit commando: \`${err.name}: ${err.message}\`
 		`);
 	}
 
