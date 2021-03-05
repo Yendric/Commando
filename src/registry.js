@@ -186,8 +186,7 @@ class CommandoRegistry {
 	 * const path = require('path');
 	 * registry.registerCommandsIn(path.join(__dirname, 'commands'));
 	 */
-	registerCommandsIn(options, messages = {}) {
-		global.commando_messages = messages;
+	registerCommandsIn(options) {
 		const obj = require('require-all')(options);
 		const commands = [];
 		for(const group of Object.values(obj)) {
