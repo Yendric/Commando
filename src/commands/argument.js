@@ -185,7 +185,7 @@ class Argument {
 				${empty ? this.prompt : valid ? valid : `Je hebt een incorrect(e) ${this.label} gegeven. Probeer opnieuw.`}
 				${oneLine`
 					Antwoord met \`cancel\` om te annuleren.
-					${wait ? `Dit commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
+					${wait ? `Dit commando wordt automatisch geannuleerd in ${this.wait} seconden.` : ''}
 				`}
 			`));
 
@@ -274,7 +274,7 @@ class Argument {
 						`}
 						${oneLine`
 							Antwoord met \`cancel\` om te annuleren, of \`finish\` om te stoppen tot dit punt.
-							${wait ? `Het commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
+							${wait ? `Het commando wordt automatisch geannuleerd in ${this.wait} seconden.` : ''}
 						`}
 					`));
 				} else if(results.length === 0) {
@@ -282,7 +282,7 @@ class Argument {
 						${this.prompt}
 						${oneLine`
 							Antwoord met \`cancel\` om te annuleren, of \`finish\` om te stoppen tot dit punt.
-							${wait ? `Het commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
+							${wait ? `Het commando wordt automatisch geannuleerd in ${this.wait} seconden.` : ''}
 						`}
 					`));
 				}
