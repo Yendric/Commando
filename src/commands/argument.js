@@ -182,10 +182,10 @@ class Argument {
 
 			// Prompt the user for a new value
 			prompts.push(await msg.reply(stripIndents`
-				${empty ? this.prompt : valid ? valid : `You provided an invalid ${this.label}. Please try again.`}
+				${empty ? this.prompt : valid ? valid : `Je hebt een incorrect(e) ${this.label} gegeven. Probeer opnieuw.`}
 				${oneLine`
-					Respond with \`cancel\` to cancel the command.
-					${wait ? `The command will automatically be cancelled in ${this.wait} seconds.` : ''}
+					Antwoord met \`cancel\` om te annuleren.
+					${wait ? `Dit commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
 				`}
 			`));
 
@@ -268,21 +268,21 @@ class Argument {
 					const escaped = escapeMarkdown(val).replace(/@/g, '@\u200b');
 					prompts.push(await msg.reply(stripIndents`
 						${valid ? valid : oneLine`
-							You provided an invalid ${this.label},
-							"${escaped.length < 1850 ? escaped : '[too long to show]'}".
-							Please try again.
+							Je hebt een ongeldig(e) ${this.label} gegeven,
+							"${escaped.length < 1850 ? escaped : '[te lang om te tonen]'}".
+							Probeer opnieuw.
 						`}
 						${oneLine`
-							Respond with \`cancel\` to cancel the command, or \`finish\` to finish entry up to this point.
-							${wait ? `The command will automatically be cancelled in ${this.wait} seconds.` : ''}
+							Antwoord met \`cancel\` om te annuleren, of \`finish\` om te stoppen tot dit punt.
+							${wait ? `Het commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
 						`}
 					`));
 				} else if(results.length === 0) {
 					prompts.push(await msg.reply(stripIndents`
 						${this.prompt}
 						${oneLine`
-							Respond with \`cancel\` to cancel the command, or \`finish\` to finish entry.
-							${wait ? `The command will automatically be cancelled in ${this.wait} seconds, unless you respond.` : ''}
+							Antwoord met \`cancel\` om te annuleren, of \`finish\` om te stoppen tot dit punt.
+							${wait ? `Het commando wordt automatisch geanulleerd in ${this.wait} seconden.` : ''}
 						`}
 					`));
 				}
